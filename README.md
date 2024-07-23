@@ -1,4 +1,4 @@
-# Waveshare-display-24580
+# Waveshare-LCD-Display-24580
 Rundes 1.28-Zoll-IPS-LCD-Touch Display - Waveshare 24580
 Anleitung für CircuitPython
 
