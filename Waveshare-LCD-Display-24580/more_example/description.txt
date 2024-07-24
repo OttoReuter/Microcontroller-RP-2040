@@ -6,7 +6,8 @@ changed to my_cst816.py, just like the driver my_qmi8658.py, which didn't exist 
 
 Replace both drivers with my_cst816.py and my_qmi8658.py to use both sensors at the same time from now.
 
-This is exactly what example 4 does. It shows acc_1 to acc_3 in the upper display area and the x and y coordinate of touch.x_point and touch.y_point in the lower area. If you tap on the display, it's not just that coordinates changes.
-You turn the brightness off in the upper area and turn it back on at the bottom (display.brightness). Note,
+This is exactly what example 4 does. It shows acc_1 to acc_3 in the upper display area and the x and y coordinate
+of touch.x_point and touch.y_point in the lower area. If you tap on the display, it's not just that coordinates
+changes. You turn the brightness off in the upper area and turn it back on at the bottom (display.brightness). Note,
 that the coordinates appear to be swapped because the display is rotated 90 degrees. That's how I use it in my
 Clock applications.
