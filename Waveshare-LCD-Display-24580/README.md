@@ -1,6 +1,6 @@
 Waveshare-LCD-Display-24580
 
-Rundes 1.28-Zoll-IPS-LCD-Touch Display - Waveshare 24580 Anleitung für CircuitPython
+Rundes 1.28-Zoll-IPS-LCD-Touch Display - Waveshare 24580 (Anleitung für CircuitPython)
 
 Wenn man den RP 2040 mit CircuitPython als Firmware nutzen will, muss man (fast) alles selbst entwickeln, denn im Netz ist dazu z.Z. nichts zu finden. Ich gehe deshalb zuerst darauf ein, wie man das Display in Betrieb nimmt und die Touchfunktionalität testet. Als erstes wird das Board mit der Firmware CircuitPython 9.0.5 geflasht. Eine ausführliche Beschreibung dazu finden Sie hier unter dem Arbeitsschritt 'Installation von CircuitPython' bei https://www.dgebhardt.de/pico-lcd-1.28-rund/download_pico_watch.html.
 
