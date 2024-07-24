@@ -1,14 +1,8 @@
 # Microcontroller RP 2040
-Der von der Raspberry Foundation entwickelte Microcontroller RP 2040 bietet eine Vielzahl
-von Anwendungsmöglichkeiten im Hobbybereich.
+The RP 2040 microcontroller developed by the Raspberry Foundation offers a variety of possible applications in the hobby sector.
 
-Besonders interessant sind dabei z.B. die Displays von Waveshare, aber auch der Pico-Boy
-und der  RP2040 Pico-Geek. Sie lassen sich alle hervorragend mit der Firmeware 'CircuitPython'
-betreiben. Aber leider gibt es für Hobbyprogrammierer meist nur Anleitungen in 'Micro Python'.
-Dagegen bietet CircuitPython viele Bibliotheken von Adafruit, die den Zugang zu anspruchsvollen
-Anwendungen erleichtern. Das zu zeigen, ist der Sinn der folgenden Anleitungen.
+The displays from Waveshare, but also the Pico-Boy and the RP2040 Pico-Geek are particularly interesting. They can all be operated excellently with the firmware 'CircuitPython'. But unfortunately for hobby programmers there are usually only instructions in 'Micro Python'. In contrast, CircuitPython offers many libraries from Adafruit that make it easier to access demanding applications. The purpose of the following instructions is to show this.
 
-Auf meiner Website zeige ich ebenfall eine Menge Anwendunsmöglichkeiten immer mit ausführlicher
-Anleitung zum Nachmachen.
+On my website I also show you a lot of possible applications, always with detailed instructions on how to do them.
 
-Schauen Sie hier: https://www.dgebhardt.de/raspi-projects/index.php
+Take a look here: https://www.dgebhardt.de/raspi-projects/index.php
