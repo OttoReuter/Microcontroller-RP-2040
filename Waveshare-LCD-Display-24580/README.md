@@ -25,3 +25,7 @@ Example 2:
 
 The display is initialized and a rounded rectangle is shown in green color. If the rectangle
 is touched, the color changes into blue. This allows testing the x- and y- coordinates on the display.
+
+Example 3:
+
+In this example, the gestures (up, down, left, right, long pressed) are shown on the display
