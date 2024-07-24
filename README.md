@@ -6,3 +6,5 @@ und der  RP2040 Pico-Geek. Sie lassen sich alle hervorragend mit der Firmeware '
 betreiben. Aber leider gibt es für Hobbyprogrammierer meist nur Anleitungen in 'Micro Python'.
 Dagegen bietet CircuitPython viele Bibliotheken von Adafruit, die den Zugang zu anspruchsvollen
 Anwendungen erleichtern. Das zu zeigen, ist der Sinn der folgenden Anleitungen.
+Auf meiner Website zeige ich ebenfall eine Menge Anwendunsmöglichkeiten immer mit ausführlicher
+Anleitung zum Nachmachen. Schauen Sie hier: https://www.dgebhardt.de/raspi-projects/index.php
