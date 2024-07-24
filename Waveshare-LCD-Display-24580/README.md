@@ -15,3 +15,9 @@ adafruit_ticks.mpy (time measurement driver)
 Try out the examples and also read the explanations on my website
 https://www.dgebhardt.de/pico-lcd-1.28-rund/touch_display.html .
 
+Example 1:
+
+It is tested whether the connection to the CST816 touch sensor has been established. Then will
+touch coordinates, gestures and press (True or False) retrieved. If that works, the touch sensor on the display
+works perfectly.
+
