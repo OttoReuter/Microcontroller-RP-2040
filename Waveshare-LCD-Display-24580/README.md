@@ -21,3 +21,7 @@ It is tested whether the connection to the CST816 touch sensor has been establis
 touch coordinates, gestures and press (True or False) retrieved. If that works, the touch sensor on the display
 works perfectly.
 
+Example 2:
+
+The display is initialized and a rounded rectangle is shown in green color. If the rectangle
+is touched, the color changes into blue. This allows testing the x- and y- coordinates on the display.
