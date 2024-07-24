@@ -14,4 +14,5 @@ Danach kopieren Sie die erforderlichen Bibliotheken in den 'lib'-Ordner. Das sin
     adafruit_ticks.mpy (Treiber für Zeitmessungen)
 
 Probieren Sie die Beispiele aus und lesen auch die Erläuterungen auf meiner Website
+
 https://www.dgebhardt.de/pico-lcd-1.28-rund/touch_display.html .
