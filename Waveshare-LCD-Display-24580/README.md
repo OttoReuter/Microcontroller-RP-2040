@@ -10,7 +10,6 @@ Danach kopieren Sie die erforderlichen Bibliotheken in den 'lib'-Ordner. Das sin
     gc9a01.py (Treiber für das Display)
     adafruit_display_shapes (Ordner mit Treibern für grafische Elemente)
     adafruit_display_text (Ordner mit Treibern für Textlabels)
-    adafruit_imageload (Ordner zur Darstellung von Bitmaps)
     adafruit_ticks.mpy (Treiber für Zeitmessungen)
 
 Probieren Sie die Beispiele aus und lesen auch die Erläuterungen auf der Website https://www.dgebhardt.de/pico-lcd-1.28-rund/touch_display.html .
