@@ -30,3 +30,33 @@ i2c = busio.I2C(scl=board.GP7, sda=board.GP6)
 touch = cst816.CST816(i2c)
 touch.set_mode(3)
 
+# Make the display context
+main_screen = displayio.Group()
+display.root_group = main_screen
+
+# make bitmap for the display background
+background = displayio.Bitmap(240, 240, 1)
+mypal = displayio.Palette(3)
+mypal[0] = 0x800000
+background.fill(0)
+# Background oben
+main_screen.append(displayio.TileGrid(background, pixel_shader=mypal))
+
+# show the roundrect
+roundrect= RoundRect(40,90,160,60,20,fill=0x009900, outline=0x00ff00)
+main_screen.append(roundrect)
+
+while True:
+    point = touch.get_point()
+    gesture = touch.get_gesture()
+    press = touch.get_touch()
+    if display.rotation == 0:
+        if touch.x_point > 40 and touch.x_point < 160 and point.y_point > 90 and point.y_point < 150 and press == True:
+            roundrect.fill = 0x0000ff
+        else:
+            roundrect.fill = 0x009900
+    if display.rotation == 90:
+        if touch.x_point > 90 and touch.x_point < 150 and point.y_point > 40 and point.y_point < 160 and press == True:
+            roundrect.fill = 0x0000ff
+        else:
+            roundrect.fill = 0x009900
