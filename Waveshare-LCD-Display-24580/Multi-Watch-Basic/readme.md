@@ -22,7 +22,7 @@ the date starts at January 1st, 2020 and the time is 00:00. A saving process is 
 Copy the following files into the 'CIRCUITPY' drive:
 - /images folder with the file symbol3.bmp;
 - in the /lib folder the libraries adafruit_display_shapes, adafruit_display_text, adafruit_imageload
-  and adafruit_ticks.mpy as well as the drivers my_cst816.py and my_qmi8658.py;
+  and adafruit_ticks.mpy as well as the drivers gc9a01.py, my_cst816.py and my_qmi8658.py;
 - the file code.py
 
 ## Note on the battery and housing:
