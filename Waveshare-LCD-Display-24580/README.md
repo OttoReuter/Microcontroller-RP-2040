@@ -36,4 +36,4 @@ In this example, the gestures (up, down, left, right, long pressed) are shown on
 Example 4:
 
 This example (in more_examples) uses the touch and motion sensor of our display. To do this you need the
-modified drivers my_cst816.py and my_qmi8658.py. Look also at the 'description.txt'.
+modified drivers my_cst816.py and my_qmi8658.py. Look also at the description.
