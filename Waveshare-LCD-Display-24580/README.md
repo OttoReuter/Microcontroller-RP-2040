@@ -1,4 +1,4 @@
-Waveshare LCD Display 24580
+# Waveshare LCD Display 24580
 
 1.28" Round IPS LCD Touch Display - Waveshare 24580 (CircuitPython Guide)
 
