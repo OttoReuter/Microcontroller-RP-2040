@@ -1,6 +1,6 @@
 # Waveshare LCD Display 24580
 
-1.28" Round IPS LCD Touch Display - Waveshare 24580 (CircuitPython Guide)
+## 1.28" Round IPS LCD Touch Display - Waveshare 24580 (CircuitPython Guide)
 
 First, the board has to be flashed with the current firmware of CircuitPython (It's right now: CircuitPython 9.0.5). You can find a detailed description of this here under the step 'Installing CircuitPython' at https://www.dgebhardt.de/pico-lcd-1.28-rund/download_pico_watch.html.
 
