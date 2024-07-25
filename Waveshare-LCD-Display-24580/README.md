@@ -29,6 +29,11 @@ Example 2:
 The display is initialized and a rounded rectangle is shown in green color. If the rectangle
 is touched, the color changes into blue. This allows testing the x- and y- coordinates on the display.
 
+Example 4:
+
+This example (in more_examples) uses the touch and motion sensor of our display. To do this you need the
+modified drivers my_cst816.py and my_qmi8658.py. Look also at the 'description.txt'.
+
 Example 3:
 
 In this example, the gestures (up, down, left, right, long pressed) are shown on the display
