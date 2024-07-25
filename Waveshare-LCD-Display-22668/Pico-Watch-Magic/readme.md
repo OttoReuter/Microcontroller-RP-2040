@@ -1,7 +1,3 @@
-# Waveshare LCD Display 22668
-## 1.28" Round IPS LCD Display - Waveshare 22668 
-## with 6 axis ACC/Gyroscope sensor (CircuitPython Guide)
-
 # Pico Watch Magic
 
 Here I show you one variant with a digital time display. Instead of analog clock-hands, a second dot (white),
