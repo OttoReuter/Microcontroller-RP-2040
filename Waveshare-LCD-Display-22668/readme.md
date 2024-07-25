@@ -12,8 +12,7 @@ https://www.dgebhardt.de/pico-lcd-1.28-rund/download_pico_watch.html.
 
 After that copy the required libraries into the 'lib' folder. These are:
 
-my_qmi8658.py (driver for the acc sensor)
-gc9a01.py (driver for the display)
+my_qmi8658.py (driver for the acc sensor) and gc9a01.py (driver for the display)
 
 adafruit_display_shapes (folder with drivers for graphical elements), adafruit_display_text (folder with drivers for
 text labels) and adafruit_ticks.mpy (time measurement driver). Adafruit's libraries can be found in the
