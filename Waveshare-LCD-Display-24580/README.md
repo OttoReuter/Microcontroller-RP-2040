@@ -10,10 +10,9 @@ cst816.py (touch sensor driver)
 
 gc9a01.py (driver for the display)
 
-adafruit_display_shapes (folder with drivers for graphical elements)
-adafruit_display_text (folder with drivers for text labels)
-adafruit_ticks.mpy (time measurement driver)
-
+adafruit_display_shapes (folder with drivers for graphical elements),
+adafruit_display_text (folder with drivers for text labels) and
+adafruit_ticks.mpy (time measurement driver).
 Adafruit's libraries can be found in the Adafruit-CircuitPython-bundle.
 
 Try out the examples and also read the explanations on my website
