@@ -73,4 +73,3 @@ while True:
             time.sleep(1)
         print(gesture)
     gesture = 0
-  
