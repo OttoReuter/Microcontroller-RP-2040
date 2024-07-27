@@ -27,7 +27,7 @@ wdays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 
 # Bitmap-Files
 zifferblatt = "/images/zifferblatt.bmp"
-second_zeiger = "/images/second.bmp"
+#second_zeiger = "/images/second.bmp"
 minute_zeiger = "/images/min_zeiger.bmp"
 hour_zeiger = "/images/hour_zeiger.bmp"
 
