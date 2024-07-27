@@ -195,7 +195,6 @@ display.refresh()
 start = ticks_ms()
 ein = 0
 
-
 while True:
     #read QMI8658
     xyz=sensor.Read_XYZ()
@@ -216,7 +215,6 @@ while True:
     r3=(point.x_point - 120)*(point.x_point - 120) + (point.y_point - 120)*(point.y_point - 120)
     if r3 < 900 and press == True:
         microcontroller.reset()
-    
     # time
     current_time = time.localtime()
     hour = current_time.tm_hour
