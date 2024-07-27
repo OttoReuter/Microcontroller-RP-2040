@@ -82,11 +82,11 @@ palette_pointer.make_transparent(0)
 # blank bitmap for the minute hand
 bitmap_pointer_blank_min = displayio.Bitmap(bitmap_pointer_min.width, bitmap_pointer_min.height, 1)
 
-#  pointer for seconds 30x140
-bitmap_pointer_sec, palette_pointer = adafruit_imageload.load(second_zeiger, bitmap=displayio.Bitmap,palette=displayio.Palette)
-palette_pointer.make_transparent(0)
-# blank bitmap for the Second hand
-bitmap_pointer_blank_sec = displayio.Bitmap(bitmap_pointer_sec.width, bitmap_pointer_sec.height, 1)
+##  pointer for seconds 30x140
+#bitmap_pointer_sec, palette_pointer = adafruit_imageload.load(second_zeiger, bitmap=displayio.Bitmap,palette=displayio.Palette)
+#palette_pointer.make_transparent(0)
+## blank bitmap for the Second hand
+#bitmap_pointer_blank_sec = displayio.Bitmap(bitmap_pointer_sec.width, bitmap_pointer_sec.height, 1)
 
 # Transparentes Overlay für 'rotozoom'
 # pointer for rotation
@@ -195,6 +195,7 @@ display.refresh()
 start = ticks_ms()
 ein = 0
 
+
 while True:
     #read QMI8658
     xyz=sensor.Read_XYZ()
@@ -215,6 +216,7 @@ while True:
     r3=(point.x_point - 120)*(point.x_point - 120) + (point.y_point - 120)*(point.y_point - 120)
     if r3 < 900 and press == True:
         microcontroller.reset()
+    
     # time
     current_time = time.localtime()
     hour = current_time.tm_hour
