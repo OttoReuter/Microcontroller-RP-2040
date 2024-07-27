@@ -12,8 +12,8 @@ A saving process is not provided for in this variant.
 
 - displays time with analogue hour-, minute- and second hands;
 - displays date and day of the week;
-- control function using touch sensor after restart without PC. This can also be done during operation can be called
-  up by pressing the center of the display.
+- control function using touch sensor after restart without PC. This can also be done during operation. It can be
+  called up by pressing the center of the display.
 - to save power, the display brightness is reduced every 10 seconds and by means of
   motion sensor set back to 'bright';
 
