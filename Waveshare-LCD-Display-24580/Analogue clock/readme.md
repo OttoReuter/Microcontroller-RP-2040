@@ -31,5 +31,5 @@ The memory is almost completely occupied by the representation of the bitmap ele
 You use the program, flash the memory completely with the file 'flash_nuke.uf2' and then play the current firmware
 from CircuiPython (currently CircuitPython 9.1.1) on the display. In my example the program shows every time the
 loop is run 17,232 bytes as free. And this is only if you use 'gc.collect()' to free unneeded memory. If you still
-get a MemoryError, you can delete all program lines for the the second hand. To do this, use the file
-'analoguhr_min.py'.
+get a MemoryError, you can delete all program lines for the the second hand. Replace the second hand with a second
+dot to save memory. The bitmap for the dial should also be replaced. To do this, use the file 'analoguhr_min.py'.
