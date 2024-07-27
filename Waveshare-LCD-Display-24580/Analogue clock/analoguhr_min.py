@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText : 2024 Detlef Gebhardt, written for CircuitPython
+# SPDX-FileCopyrightText : 2024 Detlef Gebhardt, written for CircuitPython 8.2.4
 # SPDX-FileCopyrightText : Copyright (c) 2024 Detlef Gebhardt
 # SPDX-Filename          : pico-watch
 # SPDX-License-Identifier: https://dgebhardt.de
@@ -16,6 +16,7 @@ import adafruit_imageload
 from adafruit_display_text import label
 from adafruit_display_shapes.circle import Circle
 from adafruit_display_shapes.rect import Rect
+from adafruit_display_shapes.line import Line
 from adafruit_ticks import ticks_ms
 import gc9a01
 import my_qmi8658
@@ -26,8 +27,7 @@ import microcontroller
 wdays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 
 # Bitmap-Files
-zifferblatt = "/images/zifferblatt.bmp"
-#second_zeiger = "/images/second.bmp"
+raspberry = "/images/raspberry.bmp"
 minute_zeiger = "/images/min_zeiger.bmp"
 hour_zeiger = "/images/hour_zeiger.bmp"
 
@@ -53,11 +53,6 @@ display.brightness = 1
 main = displayio.Group()
 timeset = displayio.Group()
 
-# Clock face as background
-bg_bitmap,bg_pal = adafruit_imageload.load(zifferblatt)
-bg_tile_grid = displayio.TileGrid(bg_bitmap, pixel_shader=bg_pal)
-main.append(bg_tile_grid)
-
 # Text
 text_area = label.Label(terminalio.FONT, text="", line_spacing=0.9, color=0xffffff, anchor_point=(0.5,0.5), anchored_position=(0,0))
 text_group = displayio.Group(scale=1, x=120, y=80)
@@ -69,6 +64,43 @@ updating_label1 = label.Label(font=terminalio.FONT, text="", scale=2, color=0xff
 updating_label1.anchor_point = (0, 0)
 updating_label1.anchored_position = (75, 90)
 main.append(updating_label1)
+
+# Pictogramm raspberry
+bitmap_berry, palette_berry = adafruit_imageload.load(raspberry, bitmap=displayio.Bitmap,palette=displayio.Palette)
+palette_berry.make_transparent(0)
+bitmap_berry_blank = displayio.Bitmap(bitmap_berry.width, bitmap_berry.height, 1)
+# transparent overlay for 'rotozoom'
+bitmap_scribble = displayio.Bitmap(display.width, display.height, len(palette_berry))
+tile_grid = displayio.TileGrid(bitmap_scribble, pixel_shader=palette_berry)
+main.append(tile_grid)
+bitmaptools.rotozoom( bitmap_scribble, bitmap_berry, angle = 0, px=15,py=-30)
+
+radius = 120
+xpos = 120
+ypos = 120
+# short lines per second
+for i in range(60):
+    line = Line(xpos+int(115*math.cos(i*math.pi/30)),ypos-int(115*math.sin(i*math.pi/30)),
+                xpos+int(radius*math.cos(i*math.pi/30)), ypos-int(radius*math.sin(i*math.pi/30)),0xaaaaaa)
+    main.append(line)
+# longer lines per minute
+for i in range(12):
+    line = Line(xpos+int(110*math.cos(i*math.pi/6)),ypos-int(110*math.sin(i*math.pi/6)),
+                xpos+int(120*math.cos(i*math.pi/6)), ypos-int(120*math.sin(i*math.pi/6)),0xffff00)
+    main.append(line)
+# ring with the numbers
+for i in range(1,13,1):
+    updating_label = label.Label(
+        font=terminalio.FONT, text=str(i), scale=2, color=0xffffff,
+        line_spacing=1)
+    #set label position on the display and add label
+    updating_label.anchor_point = (0, 0)
+    updating_label.anchored_position = (xpos-5+int(95*math.cos(-1*i*math.pi/6+ math.pi/2)),
+                                        ypos-10-int(95*math.sin(-1*i*math.pi/6+ math.pi/2)))
+    main.append(updating_label)
+# secondpoint
+circle_sec = Circle(xpos, ypos, 5, fill=0xff0000, outline=0x000000 )
+main.append(circle_sec)
 
 # pointer for the hour 30x140
 bitmap_pointer_hour, palette_pointer = adafruit_imageload.load(hour_zeiger, bitmap=displayio.Bitmap,palette=displayio.Palette)
@@ -82,12 +114,6 @@ palette_pointer.make_transparent(0)
 # blank bitmap for the minute hand
 bitmap_pointer_blank_min = displayio.Bitmap(bitmap_pointer_min.width, bitmap_pointer_min.height, 1)
 
-##  pointer for seconds 30x140
-#bitmap_pointer_sec, palette_pointer = adafruit_imageload.load(second_zeiger, bitmap=displayio.Bitmap,palette=displayio.Palette)
-#palette_pointer.make_transparent(0)
-## blank bitmap for the Second hand
-#bitmap_pointer_blank_sec = displayio.Bitmap(bitmap_pointer_sec.width, bitmap_pointer_sec.height, 1)
-
 # Transparentes Overlay für 'rotozoom'
 # pointer for rotation
 bitmap_scribble_hour = displayio.Bitmap(display.width, display.height, len(palette_pointer))
@@ -96,9 +122,6 @@ main.append(tile_grid)
 bitmap_scribble_min = displayio.Bitmap(display.width, display.height, len(palette_pointer))
 tile_grid = displayio.TileGrid(bitmap_scribble_min, pixel_shader=palette_pointer)
 main.append(tile_grid)
-#bitmap_scribble_sec = displayio.Bitmap(display.width, display.height, len(palette_pointer))
-#tile_grid = displayio.TileGrid(bitmap_scribble_sec, pixel_shader=palette_pointer)
-#main.append(tile_grid)
 circle1 = Circle(120, 120, 10, fill=0xff0000, outline=None)
 main.append(circle1)
 circle2 = Circle(120, 120, 5, fill=0x000000, outline=0x0)
@@ -202,32 +225,45 @@ while True:
     wert_x = (10)*xyz[1]
     # detect touchscreen
     point = touch.get_point()
-    gesture = touch.get_gesture()
+    #gesture = touch.get_gesture()
     press = touch.get_touch()
     # Brightness responds to short movements on the left arm
     if wert_x < -4:
         display.brightness = 1
         start = ticks_ms()
-        gc.collect()
+        ein = 1
     # display brightness
     if (ticks_ms() - start)/1000 > 15:
         display.brightness = 0.01
+        ein = 0
     # display touched to reset
     r3=(point.x_point - 120)*(point.x_point - 120) + (point.y_point - 120)*(point.y_point - 120)
-    if r3 < 900 and press == True:
+    if r3 < 900 and press == True and ein == 1:
         microcontroller.reset()
-    
+    if r3 < 900 and press == True and ein == 0:
+        display.brightness = 1
+        time.sleep(1)
+        start = ticks_ms()
+        ein = 1
     # time
     current_time = time.localtime()
     hour = current_time.tm_hour
     minute = current_time.tm_min
     second = current_time.tm_sec
-    #alpha_rad_sec = math.pi/30 * second
-    #bitmaptools.rotozoom( bitmap_scribble_sec, bitmap_pointer_sec, angle = alpha_rad_sec, px=15,py=107)
     alpha_rad_hour = math.pi/6 * hour + math.pi/180 * minute/2
     bitmaptools.rotozoom( bitmap_scribble_hour, bitmap_pointer_hour, angle = alpha_rad_hour, px=15,py=120)
     alpha_rad_min = math.pi/30 * minute
     bitmaptools.rotozoom( bitmap_scribble_min, bitmap_pointer_min, angle = alpha_rad_min, px=15,py=120)
-      
+    #
+    # set the second point
+    #
+    xpos_neu = int(120 + 115*math.cos((second -15)*math.pi/30))
+    delta_sec_x = xpos_neu - xpos
+    xpos = xpos_neu
+    ypos_neu = int(120 + 115*math.sin((second -15)*math.pi/30))
+    delta_sec_y = ypos_neu - ypos
+    ypos = ypos_neu
+    circle_sec.x = circle_sec.x + delta_sec_x
+    circle_sec.y = circle_sec.y + delta_sec_y 
     gc.collect()   
-    print(gc.mem_free())
+    #print(gc.mem_free())

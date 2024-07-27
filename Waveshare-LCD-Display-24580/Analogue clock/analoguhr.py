@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText : 2024 Detlef Gebhardt, written for CircuitPython
+# SPDX-FileCopyrightText : 2024 Detlef Gebhardt, written for CircuitPython 8.2.4
 # SPDX-FileCopyrightText : Copyright (c) 2024 Detlef Gebhardt
 # SPDX-Filename          : pico-watch
 # SPDX-License-Identifier: https://dgebhardt.de
@@ -195,26 +195,33 @@ display.refresh()
 start = ticks_ms()
 ein = 0
 
+
 while True:
     #read QMI8658
     xyz=sensor.Read_XYZ()
     wert_x = (10)*xyz[1]
     # detect touchscreen
     point = touch.get_point()
-    gesture = touch.get_gesture()
+    #gesture = touch.get_gesture()
     press = touch.get_touch()
     # Brightness responds to short movements on the left arm
     if wert_x < -4:
         display.brightness = 1
         start = ticks_ms()
-        gc.collect()
+        ein = 1
     # display brightness
     if (ticks_ms() - start)/1000 > 15:
         display.brightness = 0.01
+        ein = 0
     # display touched to reset
     r3=(point.x_point - 120)*(point.x_point - 120) + (point.y_point - 120)*(point.y_point - 120)
-    if r3 < 900 and press == True:
+    if r3 < 900 and press == True and ein == 1:
         microcontroller.reset()
+    if r3 < 900 and press == True and ein == 0:
+        display.brightness = 1
+        time.sleep(1)
+        start = ticks_ms()
+        ein = 1
     # time
     current_time = time.localtime()
     hour = current_time.tm_hour
