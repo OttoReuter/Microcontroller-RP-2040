@@ -33,5 +33,6 @@ from CircuiPython (currently CircuitPython 9.1.1) on the display. In my example 
 loop is run 17,232 bytes as free. And this is only if you use 'gc.collect()' to free unneeded memory. If you still
 get a MemoryError, you can delete all program lines for the the second hand. Replace the second hand with a second
 dot to save memory. The bitmap for the dial should also be replaced. To do this, use the file 'analoguhr_min.py'.
+
 Another possibility is, for example, to transfer the firmware with the older version 8.2.4. and replace the Adafruit
 libraries from the older bundle. In my tests it worked very well because the older firmware uses less memory.
