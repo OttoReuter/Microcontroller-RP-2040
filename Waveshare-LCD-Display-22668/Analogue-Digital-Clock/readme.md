@@ -24,7 +24,7 @@ That's why you can also add the date to the file 'destination.txt'. The form is 
 - For the MC, install the current firmware CircuitPython 9.1.1.
 Copy the following files to the 'CIRCUITPY' drive:
 - into the /lib folder the libraries adafruit_display_shapes, adafruit_display_text, adafruit_imageload belonging
-  to 9.1.1 and adafruit_ticks.mpy as well as the drivers gc9a01.mpy, my_qmi8658.mpy and my_cst816.mpy;
+  to 9.1.1 and adafruit_ticks.mpy as well as the drivers gc9a01.mpy and my_qmi8658.mpy;
 - into the folder 'images' the bitmap files for the pointers;
 - and to the 'CIRCUITPY' drive the files analog_digital.mpy, destination.txt and code.py;
 
