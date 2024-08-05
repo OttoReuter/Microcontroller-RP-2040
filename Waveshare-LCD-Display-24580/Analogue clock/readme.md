@@ -1,21 +1,17 @@
 # Analogue clock
 
-The round LCD display with motion and touch sensor is perfect for watch applications. I show you here a variant as
-a real analogue clock. It has a second-, a minute- and a hour- hand. They stand out well against the dark Dial off.
-The day of the week and the date are displayed on the dial.
+The round LCD display with motion and touch sensor is perfect for watch applications. Here I show you a variant as
+a real analogue clock. CircuitPython newer than 9.0.5 uses too much memory for this application. That's why this application no longer runs. The watch has a second-, a minute- and a hour- hand. They stand out well against the dark Dial off.
 If the clock is started on the PC, the time is synchronized to the second and over a long period of time
 adhered to very precisely. After the battery has been completely discharged, this method should always be chosen
 otherwise the date starts with January 1st, 2020 and the time is 00:00.
-A saving process is not provided for in this variant.
+Now a saving process is provided so that the last time is always saved after 59 seconds.
 
 ## The watch has the following functions:
 
 - displays time with analogue hour-, minute- and second hands;
-- displays date and day of the week;
 - control function using touch sensor after restart without PC. This can also be done during operation. It can be
   called up by pressing the center of the display.
-- to save power, the display brightness is reduced every 10 seconds and by means of
-  motion sensor set back to 'bright';
 
 ## Setting up the clock:
 
