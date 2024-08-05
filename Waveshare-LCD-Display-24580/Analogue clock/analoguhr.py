@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText : 2024 Detlef Gebhardt, written for CircuitPython 8.2.4
 # SPDX-FileCopyrightText : Copyright (c) 2024 Detlef Gebhardt
-# SPDX-Filename          : pico-watch
+# SPDX-Filename          : Analoguhr mit Sekunde
 # SPDX-License-Identifier: https://dgebhardt.de
 import time
 import gc
@@ -16,14 +16,12 @@ import adafruit_imageload
 from adafruit_display_text import label
 from adafruit_display_shapes.circle import Circle
 from adafruit_display_shapes.rect import Rect
+from adafruit_display_shapes.roundrect import RoundRect
 from adafruit_ticks import ticks_ms
 import gc9a01
 import my_qmi8658
 import my_cst816
 import microcontroller
-
-# Variable definieren
-wdays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 
 # Bitmap-Files
 zifferblatt = "/images/zifferblatt.bmp"
@@ -57,18 +55,6 @@ timeset = displayio.Group()
 bg_bitmap,bg_pal = adafruit_imageload.load(zifferblatt)
 bg_tile_grid = displayio.TileGrid(bg_bitmap, pixel_shader=bg_pal)
 main.append(bg_tile_grid)
-
-# Text
-text_area = label.Label(terminalio.FONT, text="", line_spacing=0.9, color=0xffffff, anchor_point=(0.5,0.5), anchored_position=(0,0))
-text_group = displayio.Group(scale=1, x=120, y=80)
-text_group.append(text_area)
-main.append(text_group)
-## create the label for time
-updating_label1 = label.Label(font=terminalio.FONT, text="", scale=2, color=0xffffff, line_spacing=1)
-# set label position on the display and add label
-updating_label1.anchor_point = (0, 0)
-updating_label1.anchored_position = (75, 90)
-main.append(updating_label1)
 
 # pointer for the hour 30x140
 bitmap_pointer_hour, palette_pointer = adafruit_imageload.load(hour_zeiger, bitmap=displayio.Bitmap,palette=displayio.Palette)
@@ -115,7 +101,16 @@ updating_label2.anchor_point = (0, 0)
 updating_label2.anchored_position = (50, 100)
 timeset.append(updating_label2)
 
-def uhr_stellen(h,m):
+# show the function
+roundrect_f= RoundRect(60,175,120,40,20,fill=0x009900, outline=0x00ff00)
+timeset.append(roundrect_f)
+#create the label function
+updating_label_f = label.Label(font=terminalio.FONT, text="fertig", scale=2, color=0xffffff, line_spacing=1)
+updating_label_f.anchor_point = (0, 0)
+updating_label_f.anchored_position = (85, 180)
+timeset.append(updating_label_f)
+
+def uhr_stellen(h,m,month,day,weekday):
     # detect touchscreen
     point = touch.get_point()
     gesture = touch.get_gesture()
@@ -125,6 +120,7 @@ def uhr_stellen(h,m):
     while True:
         gesture = touch.get_gesture()
         press = touch.get_touch()
+        point = touch.get_point()
         if gesture == 2 and press == True: # up (minute)
             m += 1
             if m > 59:
@@ -155,13 +151,14 @@ def uhr_stellen(h,m):
             time.sleep(0.5)
         # clock set leave
         if gesture == 12 and press == True:
-            r = rtc.RTC()
-            r.datetime = time.struct_time((2024, 1, 1, h, m, 0, 0, 1, -1))
-            display.root_group = main
-            display.refresh()
-            gesture = 0
-            time.sleep(1)
-            break
+            if point.x_point < 30:
+                r = rtc.RTC()
+                r.datetime = time.struct_time((2024, month, day, h, m, 0, weekday, 1, -1))
+                display.root_group = main
+                display.refresh()
+                gesture = 0
+                time.sleep(1)
+                break
 
 display.refresh()
 current_time = time.localtime()
@@ -172,8 +169,20 @@ month = current_time.tm_mon
 day = current_time.tm_mday
 weekday = current_time.tm_wday
 
+if current_time.tm_year > 2020:
+    with open("/time.txt", "w") as f:
+        f.write(str(hour)+"\n")
+        f.write(str(minute)+"\n")
+    f.close()
+    uhrstellen = False
+
 if current_time.tm_year == 2020:
-    text_area.text = "pico-watch"
+    with open("time.txt", "r") as f:
+        hour = int(f.readline())
+        minute = int(f.readline())
+    f.close()
+    rc = rtc.RTC()
+    rc.datetime = time.struct_time((2024, month, day, hour, minute, 0, weekday, 1, -1)) 
     display.brightness = 1
     uhrstellen = True
     h=hour
@@ -182,10 +191,8 @@ if current_time.tm_year == 2020:
     updating_label2.text = "{:02}:{:02}".format(h,m)
     display.root_group = timeset
     # call the 'uhr_stellen' function
-    uhr_stellen(h,m)
+    uhr_stellen(h,m,month,day,weekday)
     uhrstellen = False
-else:
-    text_area.text = wdays[weekday] + "  {:02}.{:02}.".format(day,month)
 
 if hour > 12:
     hour = hour -12
@@ -193,7 +200,8 @@ if hour > 12:
 display.root_group = main
 display.refresh()
 start = ticks_ms()
-ein = 0
+#ein = 0
+
 
 
 while True:
@@ -202,26 +210,14 @@ while True:
     wert_x = (10)*xyz[1]
     # detect touchscreen
     point = touch.get_point()
-    #gesture = touch.get_gesture()
+    gesture = touch.get_gesture()
     press = touch.get_touch()
-    # Brightness responds to short movements on the left arm
-    if wert_x < -4:
-        display.brightness = 1
-        start = ticks_ms()
-        ein = 1
-    # display brightness
-    if (ticks_ms() - start)/1000 > 15:
-        display.brightness = 0.01
-        ein = 0
     # display touched to reset
-    r3=(point.x_point - 120)*(point.x_point - 120) + (point.y_point - 120)*(point.y_point - 120)
-    if r3 < 900 and press == True and ein == 1:
-        microcontroller.reset()
-    if r3 < 900 and press == True and ein == 0:
-        display.brightness = 1
-        time.sleep(1)
-        start = ticks_ms()
-        ein = 1
+    if gesture == 12 and press == True:
+        r3=(point.x_point - 120)*(point.x_point - 120) + (point.y_point - 120)*(point.y_point - 120)
+        if r3 < 14400:
+            microcontroller.reset()
+    
     # time
     current_time = time.localtime()
     hour = current_time.tm_hour
@@ -233,6 +229,13 @@ while True:
     bitmaptools.rotozoom( bitmap_scribble_hour, bitmap_pointer_hour, angle = alpha_rad_hour, px=15,py=120)
     alpha_rad_min = math.pi/30 * minute
     bitmaptools.rotozoom( bitmap_scribble_min, bitmap_pointer_min, angle = alpha_rad_min, px=15,py=120)
-      
+    # einmal pro Minute speichern
+    if second == 59:
+        with open("/time.txt", "w") as f:
+            f.write(str(hour)+"\n")
+            f.write(str(minute+1)+"\n")
+            f.write(str(day)+"\n")
+        f.close()
+    
     gc.collect()   
     #print(gc.mem_free())
