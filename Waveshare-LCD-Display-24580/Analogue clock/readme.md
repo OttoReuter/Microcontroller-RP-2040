@@ -5,7 +5,9 @@ a real analogue clock. CircuitPython newer than 9.0.5 uses too much memory for t
 If the clock is started on the PC, the time is synchronized to the second and over a long period of time
 adhered to very precisely. After the battery has been completely discharged, this method should always be chosen
 otherwise the date starts with January 1st, 2020 and the time is 00:00.
-Now a saving process is provided so that the last time is always saved after 59 seconds.
+Now a saving process is provided so that the last time is always saved after 59 seconds. Because the time is stored
+on the CIRCUITPY drive, the writing process must be enabled through the boot.py file. And the time.txt file must
+exist.
 
 ## The watch has the following functions:
 
