@@ -21,7 +21,7 @@ Copy the following files to the 'CIRCUITPY' drive:
 
 - into the /lib folder the current libraries adafruit_display_shapes, adafruit_display_text, adafruit_imageload and
   adafruit_ticks.mpy as well as the drivers gc9a01.py and my_qmi8658.py and my_cst816.py;
-- the folder /images with the bitmap files of the hands for the seconds, minutes and hours;
+- the folder /images with the bitmap files of the dial and hands for the seconds, minutes and hours;
 - the file analoguhr.py , boot.py and time.txt.
 
 ## IMPORTANT NOTE:
