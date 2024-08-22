@@ -1,4 +1,4 @@
-! [alt Analogue Clock](https://github.com/OttoReuter/Microcontroller-RP-2040/wiki/Images)
+! [alt Analogue Clock] (https://www.dgebhardt.de/pico-lcd-1.28-rund/touchbilder/analoguhr.jpg)
 
 # Analogue clock
 
