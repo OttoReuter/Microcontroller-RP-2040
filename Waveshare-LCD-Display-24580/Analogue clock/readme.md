@@ -2,7 +2,9 @@
 # Analogue clock
 
 The round LCD display with motion and touch sensor is perfect for watch applications. Here I show you a variant as
-a real analogue clock. CircuitPython newer than 9.0.5 uses too much memory for this application. That's why this application no longer runs. The watch has a second-, a minute- and a hour- hand. They stand out well against the dark Dial off.
+a real analogue clock. If you have CircuitPython newer than 9.0.5 the firmeware uses too much memory to run this
+application. That's why this application doesn't work. Therefore use CircuitPython 9.0.5 or before.
+The watch has a second-, a minute- and a hour- hand. They stand out well against the dark Dial off.
 If the clock is started on the PC, the time is synchronized to the second and over a long period of time
 adhered to very precisely. After the battery has been completely discharged, this method should always be chosen
 otherwise the date starts with January 1st, 2020 and the time is 00:00.
