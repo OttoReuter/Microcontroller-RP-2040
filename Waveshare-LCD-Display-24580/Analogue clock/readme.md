@@ -1,3 +1,5 @@
+https://github.com/OttoReuter/Microcontroller-RP-2040.wiki.git
+
 # Analogue clock
 
 The round LCD display with motion and touch sensor is perfect for watch applications. Here I show you a variant as
