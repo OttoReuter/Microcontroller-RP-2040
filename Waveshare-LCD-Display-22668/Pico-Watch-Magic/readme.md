@@ -1,3 +1,4 @@
+![bild_06](https://github.com/user-attachments/assets/dab29622-d371-416e-a840-4b7ab823caf1)
 # Pico Watch Magic
 
 Here I show you one variant with a digital time display. Instead of analog clock-hands, a second dot (white),
