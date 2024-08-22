@@ -1,3 +1,4 @@
+![analoguhr](https://github.com/user-attachments/assets/d1efdbfa-e174-45e5-abc8-4ff69b7f5269)
 # Analogue clock
 
 The round LCD display with motion and touch sensor is perfect for watch applications. Here I show you a variant as
