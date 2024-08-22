@@ -1,5 +1,3 @@
-! [alt Analogue Clock] (https://www.dgebhardt.de/pico-lcd-1.28-rund/touchbilder/analoguhr.jpg)
-
 # Analogue clock
 
 The round LCD display with motion and touch sensor is perfect for watch applications. Here I show you a variant as
