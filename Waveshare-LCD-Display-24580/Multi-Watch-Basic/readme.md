@@ -1,3 +1,4 @@
+![multi-watch-basic](https://github.com/user-attachments/assets/725aabe1-19c6-46e3-a731-03d9c35c69b6)
 # Multi-Watch Basic
 
 The clock displays the current time, date and day of the week. In a separate field they are the steps from
