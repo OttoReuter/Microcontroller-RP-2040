@@ -1,4 +1,4 @@
-https://github.com/OttoReuter/Microcontroller-RP-2040/wiki/Images
+! [alt Analogue Clock](https://github.com/OttoReuter/Microcontroller-RP-2040/wiki/Images)
 
 # Analogue clock
 
