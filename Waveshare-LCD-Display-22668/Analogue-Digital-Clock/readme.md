@@ -1,4 +1,4 @@
-![analog-digital](https://github.com/user-attachments/assets/6810ba9f-7cfb-4465-a60c-be0d4dd0cca1)
+![analog-digital](https://github.com/user-attachments/assets/b879a856-fac6-4956-ad0c-b28e7f7fb2a0)
 # Analogue Digital Clock
 
 Today I am showing a variant as an analogue-digital clock on the round LCD display 22668. It has a digital display
