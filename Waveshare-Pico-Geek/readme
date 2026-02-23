@@ -1,1 +1,4 @@
-
+Das Waveshare RP2040-GEEK Entwicklungsboard basiert auf dem RP2040 Mikrocontroller, mit 1.14 Zoll 65K Farb-LCD, TF-Kartensteckplatz, USB-Debugging-Downloader,
+im wei&szlig;en Kunststoffgeh&auml;use. Dar&uuml;ber hinaus ist es ausgestattet mit einem USB-A-Interface. Es bietet verschiedene Firmware f&uuml;r
+SWD-Port, UART-Port und I2C-Port. An der vierpoligen I2C/ADC Buchse ist der GPIO 28 nach au&szlig;en gef&uuml;hrt. Was der Pico-Geek nicht besitzt,
+sind Tasten f&uuml;r direkte Eingaben. Damit k&ouml;nnte man z.B. einen Pin eingeben, um etwas freizuschalten o.&auml;.
