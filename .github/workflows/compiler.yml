@@ -1,0 +1,49 @@
+name: Compile RP2040 Project
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install ARM GCC Compiler and CMake
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential cmake
+
+    - name: Setup Pico SDK
+      run: |
+        git clone --depth 1 --branch master https://github.com
+        cd pico-sdk
+        git submodule update --init
+        echo "PICO_SDK_PATH=$GITHUB_WORKSPACE/pico-sdk" >> $GITHUB_ENV
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake ../workflow    # Zeigt auf Ihren Ordner 'workflow'
+
+    - name: Build Project
+      run: |
+        cd build
+        make -j$(nproc)
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: rp2040-uf2-binaries
+        path: |
+          build/*.uf2
+          build/*.elf
+          build/*.bin
