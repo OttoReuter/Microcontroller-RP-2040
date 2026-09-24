@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.13)
+
+# Pico-SDK einbinden
+include(pico_sdk_import.cmake)
+
+project(pico_gaming_loader C CXX ASM)
+cmake_policy(SET CMP0079 NEW)
+
+pico_sdk_init()
+
+add_executable(pico_gaming_loader
+    main.c
+    display.c
+)
+
+# Wichtige Hardware-Bibliotheken verknüpfen
+target_link_libraries(pico_gaming_loader 
+    pico_stdlib 
+    hardware_flash 
+    hardware_spi 
+    hardware_gpio
+    hardware_watchdog
+)
+
+# Automatisch eine .uf2 Datei erzeugen lassen
+pico_add_extra_outputs(pico_gaming_loader)
