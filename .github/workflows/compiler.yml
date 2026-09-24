@@ -22,17 +22,15 @@ jobs:
         sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential cmake
 
     - name: Setup Pico SDK
-      run: |
-        git clone --depth 1 --branch master https://github.com
-        cd pico-sdk
-        git submodule update --init
-        echo "PICO_SDK_PATH=$GITHUB_WORKSPACE/pico-sdk" >> $GITHUB_ENV
+      uses: frenck/action-setup-pico-sdk@v1
+      with:
+        version: '1.5.1'
 
     - name: Configure CMake
       run: |
         mkdir build
         cd build
-        cmake ../workflow    # Zeigt auf Ihren Ordner 'workflow'
+        cmake ../workflow
 
     - name: Build Project
       run: |
